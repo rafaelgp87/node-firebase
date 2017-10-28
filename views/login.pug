@@ -1,0 +1,37 @@
+extends index-layout.pug
+
+block head
+  style.
+    #reenviar-password {
+      cursor: pointer;
+    }
+block content
+  h4 Iniciar Sesi&oacute;n
+  fieldset#seccion-login
+    p#email-usuario-error
+    p#email-usuario-mensaje
+    input#email-usuario(placeholder='Usuario', type='text')
+    input#referencia(placeholder='Contraseña', type='password')
+    button#login-usuario.btn(type='submit') Entrar
+    a#reenviar-password(style="margin-left:20px;") &iquest;Reenviar Contrase&ntilde;a?
+  h4 Registrarse
+  fieldset#seccion-nuevo-usuario
+    p#email-nuevo-error
+    p#email-nuevo-mensaje
+    input#email-nuevo(placeholder='email', type='text' required)
+    input#referencia2(placeholder='Contraseña', type='password' required)
+    input#referencia3(placeholder='Verificar contraseña', type='password' required)
+    p Datos no necesarios:
+    input#nombres(placeholder='Nombres', type='text')
+    input#apellidos(placeholder='Apellidos', type='text')
+    p Genero:
+    select#genero
+      option(value='Femenino') Femenino
+      option(value='Masculino') Masculino
+      option(value='Indefinido') Indefinido
+    p Fecha de nacimiento:
+    input#fecha-nacimiento(placeholder='Fecha de nacimiento', type='date')
+    button#registrarse.btn(type='submit') Registrarse
+  br
+block scripts
+  script(type='application/javascript' src='js/login.js')
