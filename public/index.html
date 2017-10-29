@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pruebas con firebase</title>
+</head>
+<body>
+
+  <h1 id="holaMundo"></h1>
+
+  <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  
+  <script>
+    var holaMundo = document.getElementById('holaMundo');
+
+    $.ajax({
+      url: '/test',
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json; charset=utf-8',
+      success: function (data) {
+
+        console.log(data)
+      },
+      error: function (error) {
+        console.log(error)
+      }
+    })
+    
+
+  </script>
+</body>
+</html>
