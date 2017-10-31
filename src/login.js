@@ -4,9 +4,7 @@ $('#seccion-login').keypress(function (e) {
   }
 })
 
-$('#login-usuario').click(function() {
-  loginUsuario()
-})
+document.getElementById('login-usuario').addEventListener('click', loginUsuario)
 
 $('#seccion-nuevo-usuario').keypress(function (e) {
   if (e.which == 13) {
@@ -14,9 +12,7 @@ $('#seccion-nuevo-usuario').keypress(function (e) {
   }
 })
 
-$('#registrarse').click(function() {
-  registrarse()
-})
+document.getElementById('registrarse').addEventListener('click', registrarse)
 
 $('select').material_select()
 
@@ -93,10 +89,13 @@ function registrarse() {
         fecha_nacimiento: fechaNacimiento
       }),
       success: function (data) {
+
+        console.log(data)
+
         var mensaje = ''
 
         if (data.mensaje == 'El email seleccionado ya esta registrado') {
-          var mensaje = data.mensaje+": "+$("#email-nuevo").val()
+          var mensaje = data.mensaje+': '+$("#email-nuevo").val()
           $('#email-nuevo-error').html(mensaje)
           Materialize.toast(mensaje, 5000, 'rounded')
 
@@ -113,12 +112,11 @@ function registrarse() {
   }
 }
 
-$('#reenviar-password').click(function() {
-  reenviarPassword()
-})
+document.getElementById('reenviar-password').addEventListener('click', reenviarPassword)
 
 function reenviarPassword() {
-
+  console.log('Entro al click')
+  /*
   if (/\S+@\S+\.\S+/.test($('#email-usuario').val()) != true) {
       $('#email-usuario-error').html('El formato de email no es correcto')
       Materialize.toast('El formato de email no es correcto', 5000, 'rounded')
@@ -153,5 +151,5 @@ function reenviarPassword() {
         $('#email-usuario-error').html('No hay acceso al sistema, contacte al administrador')
       }
     })
-  }
+  }*/
 }
