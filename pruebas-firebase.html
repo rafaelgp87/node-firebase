@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pruebas con firebase</title>
+</head>
+<body>
+
+  <div class="container">
+    <input id="txtEmail" type="email" placeholder="Email">
+    <input id="txtPassword" type="password" placeholder="Contraseña">
+    <button id="btnLogin" class="btn btn-action">Login</button>
+    <button id="btnSignUp" class="btn btn-secondary">Registrarse</button>
+    <button id="btnLogout" class="btn btn-action hide">Logout</button>
+  </div>
+
+  <pre id="objeto"></pre>
+  <ul id="lista"></ul>
+
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyARFSSX-5jiaKbUEKHSFXOZ0TIDztP4oEc",
+      authDomain: "proyecto-firebase-d9033.firebaseapp.com",
+      databaseURL: "https://proyecto-firebase-d9033.firebaseio.com",
+      projectId: "proyecto-firebase-d9033",
+      storageBucket: "proyecto-firebase-d9033.appspot.com",
+      messagingSenderId: "857132833562"
+    };
+    firebase.initializeApp(config);
+
+    // Authenticación
+    var txtEmail = document.getElementById('txtEmail');
+    var txtPassword = document.getElementById('txtPassword');
+    var btnLogin = document.getElementById('btnLogin');
+    var btnSignUp = document.getElementById('btnSignUp');
+    var btnLogout = document.getElementById('btnLogout');
+
+    btnLogin.addEventListener('click', e => {
+      var email = txtEmail.value;
+      var pass = txtPassword.value;
+      var auth = firebase.auth();
+
+      var promise = auth.signInWithEmailAndPassword(email, pass);
+      promise.catch(e => console.log(e.message));
+    });
+
+    btnSignUp.addEventListener('click', e => {
+      var email = txtEmail.value;
+      var pass = txtPassword.value;
+      var auth = firebase.auth();
+
+      var promise = auth.createUserWithEmailAndPassword(email, pass);
+      promise.catch(e => console.log(e.message));
+      //Si e.message viene nulo no hubo problema de authenticación
+    });
+
+    btnLogout.addEventListener('click', e => {
+      firebase.auth().signOut();
+    });
+
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if(firebaseUser) {
+        console.log(firebaseUser);
+        btnLogout.classList.remove('hide');
+      } else {
+        console.log('no logueado');
+        btnLogout.classList.add('hide');
+      }
+    });
+
+    // Sincronización de objetos
+    var preObject = document.getElementById('objeto');
+    var ulLista = document.getElementById('lista');
+
+    var dbRefObject = firebase.database().ref().child('objeto');
+    var dbRefList = dbRefObject.child('habilidades');
+
+      dbRefObject.on('value', snap => {
+      preObject.innerText = JSON.stringify(snap.val(), null, 3)
+    });
+
+    dbRefList.on('child_added', snap => {
+      var lista = document.createElement('li');
+      lista.innerText = snap.val();
+      lista.id = snap.key;
+      ulLista.appendChild(lista)
+    });
+
+    dbRefList.on('child_changed', snap => {
+
+      var liChanged = ulLista.children[snap.key]
+      liChanged.innerText = snap.val();
+    })
+
+    dbRefList.on('child_removed', snap => {
+      var liToRemove = ulLista.children[snap.key]
+      liToRemove.remove()
+    })
+
+
+
+  </script>
+</body>
+</html>
