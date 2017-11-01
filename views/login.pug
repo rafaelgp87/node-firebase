@@ -26,8 +26,10 @@ block content
     input#apellidos(placeholder='Apellidos', type='text')
     p Genero:
     select#genero
+      option(value='')
       option(value='Femenino') Femenino
       option(value='Masculino') Masculino
+      option(value='Otro') Otro
       option(value='Indefinido') Indefinido
     p Fecha de nacimiento:
     input#fecha-nacimiento(placeholder='Fecha de nacimiento', type='date')
