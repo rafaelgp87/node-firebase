@@ -1,25 +1,8 @@
 const config = require ('../config')
 const nodemailer = require('nodemailer')
-const firebase = require('firebase')
-
-firebase.initializeApp({
-  serviceAccount: '../proyecto-firebase-b57027ed67ac.json',
-  databaseURL: 'https://proyecto-firebase-d9033.firebaseio.com'
-})
 
 exports.test = function (req, res) {
-  
-  var token = 'Prueba de token'
-
-  var db = firebase.database()
-  var ref = db.ref('token').push()
-  
-  ref.set({
-    token: token
-  })
-
-  console.log(message)
-  res.json({token:token})
+  console.log(req)
 }
 
 exports.login = function (req, res) {
@@ -30,7 +13,11 @@ exports.login = function (req, res) {
 
 exports.registrarse = function (req, res) {
 
-
+  var ref = config.db.ref('usuarios').push()
+  var username = 'Rafael Gutiérrez'
+  ref.set({
+    username: username
+  })
 }
 
 function enviarCorreoActivacion (idUsuario, req, res) {
