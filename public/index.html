@@ -35,6 +35,8 @@
   <div class="container">
     <input id="txtEmail" type="email" placeholder="Email">
     <input id="txtPassword" type="password" placeholder="Contraseña">
+    <button id="btnLoginGoogle" class="btn btn-action">Login Google</button>
+    <button id="btnLoginFacebook" class="btn btn-action">Login Facebook</button>
     <button id="btnLogin" class="btn btn-action">Login</button>
     <button id="btnSignUp" class="btn btn-secondary">Registrarse</button>
     <button id="btnLogout" class="btn btn-action">Logout</button>
@@ -61,47 +63,80 @@
     firebase.initializeApp(config);
 
     // Autenticación con Google
-    /*
-    var provider = new firebase.auth.GoogleAuthProvider();
+    var btnLoginGoogle = document.getElementById('btnLoginGoogle');
 
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
+    btnLoginGoogle.addEventListener('click', e => {
 
-      console.log(token)
-      console.log(user)
+      var provider = new firebase.auth.GoogleAuthProvider();
 
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-
-      console.log(errorCode)
-    });
-
-    firebase.auth().getRedirectResult().then(function(result) {
-      if (result.credential) {
+      firebase.auth().signInWithPopup(provider).then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
-      }
-      // The signed-in user info.
-      var user = result.user;
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
+        // The signed-in user info.
+        var user = result.user;
+
+        console.log(token)
+        console.log(user)
+
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+
+        console.log(errorCode)
+      });
+
+      firebase.auth().getRedirectResult().then(function(result) {
+        if (result.credential) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = result.credential.accessToken;
+        }
+        // The signed-in user info.
+        var user = result.user;
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+      });
     });
-    */
+
+    // Autenticación con Facebook
+    var btnLoginFacebook = document.getElementById('btnLoginFacebook');
+
+    btnLoginFacebook.addEventListener('click', e => {
+
+      var provider = new firebase.auth.FacebookAuthProvider();
+      
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+          var token = result.credential.accessToken;
+          var user = result.user;
+        
+          console.log(token)
+          console.log(user)
+      }).catch(function(error) {
+          console.log(error.code);
+          console.log(error.message);
+      });
+    });
+
+function facebookSignout() {
+   firebase.auth().signOut()
+   
+   .then(function() {
+      console.log('Signout successful!')
+   }, function(error) {
+      console.log('Signout failed')
+   });
+}
+    
     // Consultas a la base
     var query = firebase.database().ref().child('cursos');
 
@@ -184,11 +219,13 @@
         }
 
         btnLogout.classList.remove('hide');
+        btnLoginGoogle.classList.add('hide');
         btnLogin.classList.add('hide');
         btnSignUp.classList.add('hide');
       } else {
         console.log('no logueado');
         btnLogout.classList.add('hide');
+        btnLoginGoogle.classList.remove('hide');
         btnLogin.classList.remove('hide');
         btnSignUp.classList.remove('hide');
       }
