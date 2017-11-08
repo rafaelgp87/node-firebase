@@ -4,31 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png" type="image/x-icon"/>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pruebas con firebase</title>
-  <style media="screen">
-    body {
-      display: flex;
-      min-height: 100vh;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    #uploader {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 50%;
-      margin-bottom: 10px;
-    }
-
-    .hide {
-      visibility: hidden;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body>
   <br>
@@ -114,11 +93,11 @@
     btnLoginFacebook.addEventListener('click', e => {
 
       var provider = new firebase.auth.FacebookAuthProvider();
-      
+
       firebase.auth().signInWithPopup(provider).then(function(result) {
           var token = result.credential.accessToken;
           var user = result.user;
-        
+
           console.log(token)
           console.log(user)
       }).catch(function(error) {
@@ -129,14 +108,14 @@
 
 function facebookSignout() {
    firebase.auth().signOut()
-   
+
    .then(function() {
       console.log('Signout successful!')
    }, function(error) {
       console.log('Signout failed')
    });
 }
-    
+
     // Consultas a la base
     var query = firebase.database().ref().child('cursos');
 
