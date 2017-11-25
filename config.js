@@ -9,11 +9,3 @@ firebase.initializeApp({
 });
 
 exports.db = firebase.database()
-
-// Configuración email
-exports.email = {
-  servidorEmail: 'smtp.gmail.com',
-  puertoEmail: 465,
-  emailAdmin: 'rafaelgp87@gmail.com',
-  emailPass: ''
-}
