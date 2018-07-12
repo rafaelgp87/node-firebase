@@ -1,0 +1,34 @@
+<div ng-controller="login" >
+  <div class="formulario-login">
+
+    <div>
+      <input id="txtEmail" type="email" placeholder="Email">
+    </div>
+    <div>
+      <input id="txtPassword" type="password" placeholder="Contraseña">
+    </div>
+    <div>
+      <button ng-click="loginGoogle()">Login Google</button>
+    </div>
+    <div>
+      <button ng-click="loginFacebook()">Login Facebook</button>
+    </div>
+    <div>
+      <button ng-click="loginEmail()">Login</button>
+    </div>
+    <div>
+      <button ng-click="registrarEmail()">Registrarse</button>
+    </div>
+
+    <div>
+      <button ng-click="logout()">Logout</button>
+    </div>
+  </div>
+
+  <progress value="0" max="100" id="uploader">0%</progress>
+  <br>
+  <input type="file" value="upload" id="fileButton" />
+  <br>
+  <pre id="objeto"></pre>
+  <ul id="lista"></ul>
+</div>

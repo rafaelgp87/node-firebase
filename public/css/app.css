@@ -40,27 +40,26 @@ header {
 .menu{
   height: 40px;
   background-color: black;
+  display: flex;
+  flex-wrap:wrap;
 }
 
-.menu li{
-  display: inline-block;
-}
-
-.menu li a {
+.menu-item {
   font-weight:600;
   text-decoration:none;
-  padding:11px;
-  display:block;
   color:#ffffff;
-  -webkit-transition: all 0.2s ease-in-out 0s;
-  -moz-transition: all 0.2s ease-in-out 0s;
-  -o-transition: all 0.2s ease-in-out 0s;
-  -ms-transition: all 0.2s ease-in-out 0s;
-  transition: all 0.2s ease-in-out 0s;
+  height: 100%;
+  margin-left: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.menu li a:hover, .menu li:hover > a{
-  color:#ffffff;
+.menu-item-text {
+  padding: 1em;
+}
+
+.menu-item:hover {
   background:#4CAF50;
 }
 
