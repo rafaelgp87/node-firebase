@@ -1,16 +1,13 @@
-app.controller('login', function($scope) {
+app.controller('login', ['$scope', function(s) {
 
   // Funciones
-  $scope.loginEmail = function () {
+  s.loginEmail = function () {
 
-    var txtEmail = document.getElementById('txtEmail');
-    var txtPassword = document.getElementById('txtPassword');
-
-    var promise = firebase.auth().signInWithEmailAndPassword(txtEmail.value, txtPassword.value);
+    var promise = firebase.auth().signInWithEmailAndPassword(s.email, s.pass);
     promise.catch(e => console.log(e));
   }
 
-  $scope.loginGoogle = function () {
+  s.loginGoogle = function () {
 
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
@@ -27,7 +24,7 @@ app.controller('login', function($scope) {
     });
   }
 
-  $scope.loginFacebook = function () {
+  s.loginFacebook = function () {
 
     var provider = new firebase.auth.FacebookAuthProvider();
 
@@ -43,18 +40,16 @@ app.controller('login', function($scope) {
     });
   }
 
-  $scope.registrarEmail = function () {
+  s.registrarEmail = function () {
 
-    var email = txtEmail.value;
-    var pass = txtPassword.value;
     var auth = firebase.auth();
 
-    var promise = auth.createUserWithEmailAndPassword(email, pass);
+    var promise = auth.createUserWithEmailAndPassword(s.email, s.pass);
     promise.catch(e => console.log(e));
     //Si e.message viene nulo no hubo problema de authenticación
   }
 
-  $scope.logout = function () {
+  s.logout = function () {
 
     firebase.auth().signOut().then(function() {
       console.log('Signout successful!')
@@ -111,7 +106,6 @@ app.controller('login', function($scope) {
       if (user != null) {
 
         // User is signed in.
-        /*
         var displayName = user.displayName;
         console.log('displayName: ' + displayName)
         var email = user.email;
@@ -126,7 +120,6 @@ app.controller('login', function($scope) {
         console.log('uid: ' + uid)
         var providerData = user.providerData;
         console.log('providerData: ' + providerData)
-        */
       }
     } else {
       console.log('no logueado');
@@ -160,4 +153,4 @@ app.controller('login', function($scope) {
     var liToRemove = ulLista.children[snap.key]
     liToRemove.remove()
   })
-});
+}]);
