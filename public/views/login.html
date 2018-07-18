@@ -1,27 +1,30 @@
 <div ng-controller="login" >
   <div class="formulario-login">
-
     <div>
       <input type="text" ng-model="email" placeholder="email">
     </div>
     <div>
       <input type="password" ng-model="pass" placeholder="contraseña">
     </div>
-    <div>
-      <button ng-click="loginGoogle()">Login Google</button>
-    </div>
-    <div>
-      <button ng-click="loginFacebook()">Login Facebook</button>
-    </div>
-    <div>
-      <button ng-click="loginEmail()">Login</button>
-    </div>
-    <div>
-      <button ng-click="registrarEmail()">Registrarse</button>
+
+    <div class="button" ng-click="loginGoogle()">
+        <img src="img/icons8-google-48.png" class="google">
     </div>
 
-    <div>
-      <button ng-click="logout()">Logout</button>
+    <div class="button" ng-click="loginFacebook()">
+        <img src="img/icons8-facebook-40.png" class="facebook">
+    </div>
+
+    <div class="button" ng-click="loginEmail()">
+      Login
+    </div>
+
+    <div class="button" ng-click="registrarEmail()">
+      Registrarse
+    </div>
+
+    <div class="button" ng-click="logout()">
+      Logout
     </div>
   </div>
 

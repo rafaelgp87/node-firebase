@@ -6,31 +6,6 @@
     <title>Pruebas con firebase</title>
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="css/app.css">
-  </head>
-  <body>
-
-    <div class="grid-container">
-
-      <header>
-        <nav class="menu">
-          <a href="#!/" class="menu-item" >
-            <span class="menu-item-text">inicio</span>
-          </a>
-
-          <a href="#!/login" class="menu-item" >
-            <span class="menu-item-text">login</span>
-          </a>
-        </nav>
-      </header>
-
-      <div class="container" ng-view></div>
-
-      <footer>
-        <a href="#">rafaelgp87</a>
-      </footer>
-
-    </div>
-
     <script defer src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
@@ -40,5 +15,26 @@
     <script defer src="app/app.js"></script>
     <script defer src="app/controllers/home.js"></script>
     <script defer src="app/controllers/login.js"></script>
+  </head>
+  <body class="grid-container">
+
+    <header>
+      <nav class="menu">
+        <a href="#!/" class="menu-item" >
+          <span class="menu-item-text">inicio</span>
+        </a>
+
+        <a href="#!/login" class="menu-item" >
+          <span class="menu-item-text">login</span>
+        </a>
+      </nav>
+    </header>
+
+    <div class="container" ng-view></div>
+
+    <footer>
+      <a href="#">rafaelgp87</a>
+    </footer>
+
   </body>
 </html>

@@ -99,32 +99,7 @@ app.controller('login', ['$scope', function(s) {
     //console.log(messages);
   });
 
-  firebase.auth().onAuthStateChanged(user => {
-
-    if(user) {
-      //user.sendEmailVerification();
-      if (user != null) {
-
-        // User is signed in.
-        var displayName = user.displayName;
-        console.log('displayName: ' + displayName)
-        var email = user.email;
-        console.log('email: ' + email)
-        var emailVerified = user.emailVerified;
-        console.log('emailVerified: ' + emailVerified)
-        var photoURL = user.photoURL;
-        console.log('photoURL: ' + photoURL)
-        var isAnonymous = user.isAnonymous;
-        console.log('isAnonymous: ' + isAnonymous)
-        var uid = user.uid;
-        console.log('uid: ' + uid)
-        var providerData = user.providerData;
-        console.log('providerData: ' + providerData)
-      }
-    } else {
-      console.log('no logueado');
-    }
-  })
+  verificarLogin()
 
   // Sincronización de objetos
   var preObject = document.getElementById('objeto');

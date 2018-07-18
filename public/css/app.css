@@ -25,7 +25,7 @@ body, html {
   width: 100%;
   display: grid;
   grid-gap: 0.5em;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: auto 60% auto;
   grid-template-rows: auto 80% auto;
   grid-template-areas:
     "header header header"
@@ -53,6 +53,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: context-menu;
 }
 
 .menu-item-text {
@@ -72,15 +73,24 @@ header {
   margin-left: 0px;
 }
 
+.button:hover {
+  cursor: context-menu;
+}
+.google {
+  height: 2.5em;
+  width: 2.5em;
+}
+
+.facebook {
+  height: 2.5em;
+  width: 2.5em;
+}
+
 #uploader {
   -webkit-appearance: none;
   appearance: none;
   width: 50%;
   margin-bottom: 10px;
-}
-
-.hide {
-  visibility: hidden;
 }
 
 footer {
