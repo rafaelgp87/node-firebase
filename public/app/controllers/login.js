@@ -10,30 +10,34 @@ app.controller('login', ['$scope', function(s) {
   s.loginGoogle = function () {
 
     var provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('profile');
     provider.addScope('email');
-    provider.addScope('https://www.googleapis.com/auth/plus.login');
+    provider.addScope('profile');
+    //provider.addScope('https://www.googleapis.com/auth/plus.login');
 
     firebase.auth().signInWithRedirect(provider);
 
     firebase.auth().getRedirectResult().then(function(authData) {
-      //console.log(authData);
-
+      console.log('****************')
+      console.log(authData);
+      onsole.log('****************')
     }).catch(function(error) {
-      console.log(error);
+      console.log(error.code);
+      console.log(error.message);
     });
   }
 
   s.loginFacebook = function () {
 
     var provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('email');
+    provider.addScope('public_profile');
 
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-        var token = result.credential.accessToken;
-        var user = result.user;
+    firebase.auth().signInWithRedirect(provider);
 
-        //console.log(token)
-        //console.log(user)
+    firebase.auth().getRedirectResult().then(function(authData) {
+      console.log('****************')
+      console.log(authData);
+      onsole.log('****************')
     }).catch(function(error) {
         console.log(error.code);
         console.log(error.message);
