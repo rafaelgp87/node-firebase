@@ -10,9 +10,12 @@
     <script defer src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/5.0.4/firebase-storage.js"></script>
-    <script defer src="https://unpkg.com/vue/dist/vue.min.js"></script>
-    <script defer src="https://unpkg.com/vue-router/dist/vue-router.min.js"></script>
-    <script defer src="app.js"></script>
+    <script defer src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script defer src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script defer src="app/components/home.js"></script>
+    <script defer src="app/components/list.js"></script>
+    <script defer src="app/components/login.js"></script>
+    <script defer src="app/app.js"></script>
   </head>
   <body>
     <div id="app" class="grid-container">
@@ -21,6 +24,9 @@
         <nav class="menu">
           <router-link class="menu-item"  to="/">
             <span class="menu-item-text">inicio</span>
+          </router-link>
+          <router-link class="menu-item" to="/listas">
+            <span class="menu-item-text">listas</span>
           </router-link>
           <router-link class="menu-item" to="/login">
             <span class="menu-item-text">login</span>

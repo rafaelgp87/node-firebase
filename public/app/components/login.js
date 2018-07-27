@@ -1,44 +1,3 @@
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyARFSSX-5jiaKbUEKHSFXOZ0TIDztP4oEc",
-  authDomain: "proyecto-firebase-d9033.firebaseapp.com",
-  databaseURL: "https://proyecto-firebase-d9033.firebaseio.com",
-  projectId: "proyecto-firebase-d9033",
-  storageBucket: "proyecto-firebase-d9033.appspot.com",
-  messagingSenderId: "857132833562"
-};
-
-firebase.initializeApp(config);
-
-function verificarLogin() {
-
-  firebase.auth().onAuthStateChanged(user => {
-    console.log('Verificar login...')
-    if (user) {
-      if (user != null) {
-        console.log('logueado');
-      }
-    } else {
-      console.log('no logueado');
-    }
-  })
-}
-
-// Components
-
-const home = Vue.component('home', {
-  template:`
-    <div class="component-home">
-
-      <p>Home</p>
-
-    </div>
-  `,
-  created: function () {
-    verificarLogin();
-  }
-});
-
 const login = Vue.component('login', {
   template:`
     <div class="component-login">
@@ -88,8 +47,6 @@ const login = Vue.component('login', {
         </div>
       </div>
 
-      <pre id="objeto"></pre>
-      <ul id="lista"></ul>
     </div>
   `,
   data: function() {
@@ -119,28 +76,33 @@ const login = Vue.component('login', {
       });
     },
     loginGoogle: function() {
-      var provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('email');
-      provider.addScope('profile');
+      var googleProvider = new firebase.auth.GoogleAuthProvider();
+      googleProvider.addScope('email');
+      googleProvider.addScope('profile');
       //provider.addScope('https://www.googleapis.com/auth/plus.login');
 
-      firebase.auth().signInWithRedirect(provider);
+      /*firebase.auth().signInWithPopup(googleProvider).then(function(result) {
+        console.log(result)
+      }).catch(function(error) {
 
+        console.log(error)
+      });*/
+
+      firebase.auth().signInWithRedirect(googleProvider);
       firebase.auth().getRedirectResult().then(function(authData) {
         console.log('****************')
-        console.log(authData);
-        onsole.log('****************')
+        console.log(authData)
+        console.log('****************')
       }).catch(function(error) {
-        console.log(error.code);
-        console.log(error.message);
+        console.log(error)
       });
     },
     loginFacebook: function() {
-      var provider = new firebase.auth.FacebookAuthProvider();
-      provider.addScope('email');
-      provider.addScope('public_profile');
+      var facebookProvider = new firebase.auth.FacebookAuthProvider();
+      facebookProvider.addScope('email');
+      facebookProvider.addScope('public_profile');
 
-      firebase.auth().signInWithRedirect(provider);
+      firebase.auth().signInWithRedirect(facebookProvider);
 
       firebase.auth().getRedirectResult().then(function(authData) {
         console.log('****************')
@@ -187,67 +149,5 @@ const login = Vue.component('login', {
   // Antes de renderear el template
   created: function () {
     verificarLogin();
-  },
-  // Después de renderear el template
-  mounted: function() {
-    // Consultas a la base
-    var query = firebase.database().ref().child('cursos');
-
-    query.once('value', function(snapshot) {
-      var messages = [];
-      snapshot.forEach(function(snap) {
-        //console.log(snap.key)
-        //console.log(snap.val())
-        if(snap.val().nombre === 'c#') {
-          messages.push(snap.val());
-        }
-      });
-      //console.log(messages);
-    });
-
-    var preObject = document.getElementById('objeto');
-    var ulLista = document.getElementById('lista');
-    var dbRefObject = firebase.database().ref().child('objeto');
-    var dbRefList = dbRefObject.child('habilidades');
-
-    dbRefObject.on('value', snap => {
-      preObject.innerText = JSON.stringify(snap.val(), null, 3)
-    });
-
-    dbRefList.on('child_added', snap => {
-      var lista = document.createElement('li');
-      lista.innerText = snap.val();
-      lista.id = snap.key;
-      ulLista.appendChild(lista)
-    });
-
-    dbRefList.on('child_changed', snap => {
-
-      var liChanged = ulLista.children[snap.key]
-      liChanged.innerText = snap.val();
-    })
-
-    dbRefList.on('child_removed', snap => {
-      var liToRemove = ulLista.children[snap.key]
-      liToRemove.remove()
-    })
   }
-});
-
-// Navegación
-
-const routes = [
-  { path: '/', component: home },
-  { path: '/home', redirect: '/' },
-  { path: '/login', component: login }
-];
-
-const router = new VueRouter({
-  //mode: 'history',
-  routes: routes
-});
-
-const app = new Vue({
-  el: '#app',
-  router
 });

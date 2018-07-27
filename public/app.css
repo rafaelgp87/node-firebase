@@ -83,9 +83,23 @@ footer p {
 
 /* css para Componentes */
 
-.component-home {
+.component-home,
+.component-list {
   height: 85vh;
   width: 100%;
+}
+
+.formulario-login {
+  text-align: center;
+  display: inline-block;
+}
+
+.container-list {
+  color: rgb(214, 211, 211);
+  background:rgba(0,0,0,0.5);
+  width: auto;
+  height: auto;
+  padding: 2em;
 }
 
 .formulario-login, div {
@@ -98,7 +112,7 @@ footer p {
   background:rgba(0,0,0,0.5);
   padding: 0.5em;
   width: 15em;
-  text-align: center
+  text-align: center;
 }
 
 .button:hover {
