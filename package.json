@@ -1,5 +1,5 @@
 {
-  "name": "proyecto-firebase",
+  "name": "node-firebase",
   "version": "1.0.0",
   "description": "Proyecto de prueba usando firebase",
   "main": "server.js",
@@ -15,10 +15,7 @@
     "express": "^4.16.2",
     "firebase-admin": "^5.12.1"
   },
-  "devDependencies": {
-    "nodemon": "^1.17.5"
-  },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   }
 }

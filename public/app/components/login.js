@@ -11,24 +11,34 @@ const login = Vue.component('login', {
           <input type="password" v-model="pass" placeholder="contraseña">
         </div>
 
-        <div class="button" v-on:click="loginGoogle">
-            <img src="img/icons8-google-48.png" class="google">
+        <div>
+          <button type="button" v-on:click="loginGoogle">
+              <img src="img/icons8-google-48.png" class="google">
+          </button>
         </div>
 
-        <div class="button" v-on:click="loginFacebook">
-            <img src="img/icons8-facebook-40.png" class="facebook">
+        <div>
+          <button type="button" v-on:click="loginFacebook">
+              <img src="img/icons8-facebook-40.png" class="facebook">
+          </button>
         </div>
 
-        <div class="button" v-on:click="loginEmail">
-          login
+        <div>
+          <button type="button" v-on:click="loginEmail">
+            login
+          </button>
         </div>
 
-        <div class="button" v-on:click="registrarEmail">
-          registrarse
+        <div>
+          <button type="button" v-on:click="registrarEmail">
+            registrarse
+          </button>
         </div>
 
-        <div class="button" v-on:click="logout">
-          logout
+        <div>
+          <button type="button" v-on:click="logout">
+            logout
+          </button>
         </div>
       </div>
 
@@ -39,9 +49,9 @@ const login = Vue.component('login', {
         <div>
           <input type="file" value="upload" id="fileButton" v-on:change="uploadFile" />
         </div>
-        <div class="button" v-on:click="guardarImagen">
+        <button type="button" v-on:click="guardarImagen">
           guardar imagen
-        </div>
+        </button>
         <div>
           <img :src="image" />
         </div>
